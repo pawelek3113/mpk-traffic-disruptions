@@ -1,17 +1,15 @@
 import express from "express";
 import { Scraper } from "../scraper";
+import { MpkScraper } from "../scraper/MpkScraper";
 
 const router = express.Router();
 
-const s = new Scraper(
-  "https://www.mpk.lodz.pl/rozklady/utrudnienia.jsp",
-  "iso-8859-2"
-);
+const s = new MpkScraper()
 
 router.get("/", (req, res) => {
   (async () => {
     try {
-      const data = await s.readData("#tJamsCntr");
+      const data = await s.getTraficIssues()
 
       res.set({
         "Content-Type": "application/json; charset=utf-8",

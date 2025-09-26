@@ -43,12 +43,14 @@ export class Scraper {
     return null;
   }
 
-  public async readData(id: string) {
+  protected async readData() {
     const d = await this.fetchData();
     if (!d) {
       throw new Error("Error while reading data");
     }
     const c = cheerio.load(d);
-    return c(id).html();
+    return c;
   }
 }
+
+// IDEA: MAKE A SEPARATE MPKSCRAPER CLASS THAT WILL DO SOMETHING INTERESTING WITH READ DATA FUNCTION !!!! AND THEN IT WILL PASS THE FORMED DATA TO THE SERVER WHICH WILL THEN SEND IT TO DISCORD (CRON) AND WILL STORE THE MOST RECENT MESSAGE'S HASH IN THE FILE
