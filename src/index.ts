@@ -1,5 +1,5 @@
 import express from "express";
-import scraperRoutes from "./routes/scraperRoutes";
+import scraperRoutes from "./routes/mpkRoutes";
 
 const app = express();
 const port = 4269;

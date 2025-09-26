@@ -3,12 +3,15 @@ import { Scraper } from "../scraper";
 
 const router = express.Router();
 
-const s = new Scraper("https://www.mpk.lodz.pl/rozklady/utrudnienia.jsp", "iso-8859-2");
+const s = new Scraper(
+  "https://www.mpk.lodz.pl/rozklady/utrudnienia.jsp",
+  "iso-8859-2"
+);
 
 router.get("/", (req, res) => {
   (async () => {
     try {
-      const data = await s.readData();
+      const data = await s.readData("#tJamsCntr");
 
       res.set({
         "Content-Type": "application/json; charset=utf-8",

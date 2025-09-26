@@ -1,14 +1,12 @@
 import axios, { AxiosError } from "axios";
-
+import * as cheerio from "cheerio";
 import iconv from "iconv-lite";
 
 export class Scraper {
   constructor(
     public readonly url: string,
     public readonly charset: string = "utf-8"
-  ) {
-    console.log("CONSTRUCTOR RAN");
-  }
+  ) {}
 
   private async fetchData() {
     try {
@@ -45,7 +43,12 @@ export class Scraper {
     return null;
   }
 
-  public async readData() {
-    return await this.fetchData();
+  public async readData(id: string) {
+    const d = await this.fetchData();
+    if (!d) {
+      throw new Error("Error while reading data");
+    }
+    const c = cheerio.load(d);
+    return c(id).html();
   }
 }
