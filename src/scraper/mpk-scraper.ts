@@ -2,7 +2,7 @@ import { Cheerio, CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 import { Scraper } from ".";
 
-interface TrafficIssue {
+export interface TrafficIssue {
   lineNumbers: string[];
   trafficIssue: string;
   situationChange: string;
