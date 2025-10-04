@@ -22,6 +22,11 @@ export class MpkScraper extends Scraper {
       throw new Error("Error while getting traffic issues");
     }
 
+    const noIssues = rawData.find("noTrafficJams");
+    if (noIssues.text()) {
+      return null;
+    }
+
     const table = rawData.find("#tJams");
     if (!table) {
       throw new Error("Could not find the traffic issues table");
@@ -45,8 +50,8 @@ export class MpkScraper extends Scraper {
 
       // catch main info
       const tds = row.find("td");
-      const trafficIssue = tds.eq(1).text().trim();
-      const situationChange = tds.eq(2).text().trim();
+      const trafficIssue = tds.eq(1).text().trim().replace(/\s+/g, " ");
+      const situationChange = tds.eq(2).text().trim().replace(/\s+/g, " ");
 
       // catch lat and lng
       const onclick = tds.eq(3).find("a").eq(0).attr("onclick") ?? "";
@@ -63,7 +68,6 @@ export class MpkScraper extends Scraper {
         /Dodano dnia\s+(\d{4}-\d{2}-\d{2})\s+o godzinie\s+(\d{2}:\d{2})/
       );
       const addedDate = m ? `${m[1]} ${m[2]}` : "";
-
 
       issuesFound.push({
         lineNumbers,
