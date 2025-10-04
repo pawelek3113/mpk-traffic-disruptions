@@ -1,13 +1,18 @@
 import { Cheerio, CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
 import { Scraper } from ".";
+import { generateTrafficIssueKey } from "./issue-key";
 
 export interface TrafficIssue {
   lineNumbers: string[];
   trafficIssue: string;
   situationChange: string;
   addedDate: string;
-  location: { lat: number; lng: number };
+  location: { lat: number | null; lng: number | null };
+}
+
+export interface TrafficIssueWithId extends TrafficIssue {
+  id: string;
 }
 
 export class MpkScraper extends Scraper {
@@ -32,7 +37,7 @@ export class MpkScraper extends Scraper {
       throw new Error("Could not find the traffic issues table");
     }
 
-    const issuesFound: TrafficIssue[] = [];
+    const issuesFound: TrafficIssueWithId[] = [];
 
     const primaryRows = table
       .find("tbody tr")
@@ -58,8 +63,8 @@ export class MpkScraper extends Scraper {
       const mtchs = onclick.match(
         /showLoc\(\s*([+-]?\d+(?:\.\d+)?)\s*,\s*([+-]?\d+(?:\.\d+)?)\s*\)\s*;?/
       );
-      const lng = mtchs ? parseFloat(mtchs[1]) : NaN;
-      const lat = mtchs ? parseFloat(mtchs[2]) : NaN;
+      const lng = mtchs ? parseFloat(mtchs[1]) : null;
+      const lat = mtchs ? parseFloat(mtchs[2]) : null;
 
       // catch date
       const dateRow = row.next("tr");
@@ -69,13 +74,15 @@ export class MpkScraper extends Scraper {
       );
       const addedDate = m ? `${m[1]} ${m[2]}` : "";
 
-      issuesFound.push({
+      const base: TrafficIssue = {
         lineNumbers,
         trafficIssue,
         situationChange,
         addedDate,
         location: { lat, lng },
-      });
+      };
+
+      issuesFound.push({ id: generateTrafficIssueKey(base), ...base });
     });
     return issuesFound;
   }
