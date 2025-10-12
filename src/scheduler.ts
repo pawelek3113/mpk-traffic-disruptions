@@ -39,7 +39,7 @@ export class Scheduler {
           { name: "Zmiany", value: issue.situationChange },
           {
             name: "Lokalizacja",
-            value: `https://www.google.com/maps/@${issue.location.lat},${issue.location.lng},12z`,
+            value: `https://www.google.com/maps/@${issue.location.lat},${issue.location.lng},6z`,
           },
         ]
       );
