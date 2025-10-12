@@ -5,14 +5,14 @@ import path from "path";
 import z from "zod";
 dotenv.config();
 
-const databaseFile = z.string().nonempty().parse(process.env.DATABASE_FILE);
+const DATABASE_FILE = z.string().nonempty().parse(process.env.DATABASE_FILE);
 
-const dataDir = path.dirname(databaseFile);
+const dataDir = path.dirname(DATABASE_FILE);
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-const db = new Database(databaseFile);
+const db = new Database(DATABASE_FILE);
 
 db.pragma("journal_mode = WAL");
 db.pragma("busy_timeout = 5000");
