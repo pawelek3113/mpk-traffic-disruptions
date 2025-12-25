@@ -1,5 +1,0 @@
----
-description: Do not make changes in code unless user tells you to do this. Do not create any new files etc.
-globs: ./src
-alwaysApply: true
----

@@ -11,7 +11,6 @@ import z from "zod";
 
 export class DiscordClient {
   private webhookClient: WebhookClient;
-  private embedBuilder: EmbedBuilder;
 
   constructor() {
     const WEBHOOK_URL = z
@@ -22,8 +21,6 @@ export class DiscordClient {
     this.webhookClient = new WebhookClient({
       url: WEBHOOK_URL,
     });
-
-    this.embedBuilder = new EmbedBuilder();
   }
 
   public async send(
@@ -42,11 +39,22 @@ export class DiscordClient {
     color: ColorResolvable | null,
     fields: APIEmbedField[]
   ) {
-    return this.embedBuilder
-      .setTitle(title)
-      .setDescription(description)
-      .setFooter(footer)
-      .setColor(color)
-      .addFields(fields);
+    const embed = new EmbedBuilder();
+    if (title) {
+      embed.setTitle(title);
+    }
+    if (description) {
+      embed.setDescription(description);
+    }
+    if (footer) {
+      embed.setFooter(footer);
+    }
+    if (color) {
+      embed.setColor(color);
+    }
+    if (fields && fields.length > 0) {
+      embed.setFields(fields);
+    }
+    return embed;
   }
 }
