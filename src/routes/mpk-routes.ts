@@ -1,8 +1,10 @@
 import express from "express";
 import { MpkScraper } from "../scraper/mpk-scraper";
+import { ScrapingUtils } from "../scrapingUtils";
 
 const router = express.Router();
 
+// TODO: fix?
 router.get("/all", async (req, res) => {
   try {
     const s = new MpkScraper();
@@ -21,8 +23,7 @@ router.get("/all", async (req, res) => {
 });
 
 router.post("/run-scrape", async (req, res) => {
-  const { runScrape } = await import("../runner");
-  const newIssues = await runScrape();
+  const newIssues = await ScrapingUtils.run()
   res.json({count: newIssues?.length, newIssues});
 });
 
