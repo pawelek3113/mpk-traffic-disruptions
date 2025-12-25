@@ -9,6 +9,5 @@ app.use(scraperRoutes);
 
 app.listen(port, () => {
   console.log(`Running at: http://localhost:${port}`);
-  const scheduler = new Scheduler();
-  scheduler.start();
+  Scheduler.start();
 });
