@@ -5,20 +5,20 @@
 Clone the repository and navigate to the directory using:
 
 ```bash
-   git clone git@github.com:pawelek3113/mpk-traffic-disruptions.git
-   cd mpk-traffic-disruptions
+git clone git@github.com:pawelek3113/mpk-traffic-disruptions.git
+cd mpk-traffic-disruptions
 ```
 
 Install the dependencies:
 
 ```bash
-   npm install
+npm install
 ```
 
 Create a `.env` file containing necessary environment variables:
 
 ```bash
-   touch .env && echo DISCORD_BOT_TOKEN=your_discord_bot_token >> .env && echo DISCORD_CHANNEL_ID=your_discord_channel_id >> .env
+touch .env && echo DISCORD_BOT_TOKEN=your_discord_bot_token >> .env && echo DISCORD_CHANNEL_ID=your_discord_channel_id >> .env
 ```
 
 ## Building and running
@@ -26,14 +26,14 @@ Create a `.env` file containing necessary environment variables:
 Run scraper once:
 
 ```bash
-   npm run build
-   npm start
+npm run build
+npm start
 ```
 
 or run a server:
 
 ```bash
-   npm run start-server
+npm run start-server
 ```
 
 ## Development
@@ -41,11 +41,11 @@ or run a server:
 Run scraper in development mode:
 
 ```bash
-   npm run dev
+npm run dev
 ```
 
 or run a server in development mode:
 
 ```bash
-   npm run dev-server
+npm run dev-server
 ```
