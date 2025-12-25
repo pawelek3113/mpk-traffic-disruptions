@@ -1,6 +1,6 @@
 import express from "express";
-import { MpkScraper } from "../scraper/mpk-scraper";
-import { ScrapingUtils } from "../scrapingUtils";
+import { MpkScraper } from "../scraper/mpk-scraper.js";
+import { ScrapingUtils } from "../scrapingUtils.js";
 
 const router = express.Router();
 

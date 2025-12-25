@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import { ScrapingUtils } from "./scrapingUtils";
+import { ScrapingUtils } from "./scrapingUtils.js";
 
 export class Scheduler {
   public start() {

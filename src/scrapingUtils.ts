@@ -1,7 +1,7 @@
 import { APIEmbed, JSONEncodable } from "discord.js";
-import { DiscordClient } from "./discord";
-import { runScrape } from "./runner";
-import { TrafficIssueWithId } from "./scraper/mpk-scraper";
+import { DiscordClient } from "./discord/discord.js";
+import { runScrape } from "./runner.js";
+import { TrafficIssueWithId } from "./scraper/mpk-scraper.js";
 
 export class ScrapingUtils {
   static async run() {

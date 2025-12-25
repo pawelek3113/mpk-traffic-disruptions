@@ -1,6 +1,6 @@
 import express from "express";
-import scraperRoutes from "./routes/mpk-routes";
-import { Scheduler } from "./scheduler";
+import scraperRoutes from "./routes/mpk-routes.js";
+import { Scheduler } from "./scheduler.js";
 
 const app = express();
 const port = 3000;
