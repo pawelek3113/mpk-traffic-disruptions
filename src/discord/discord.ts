@@ -15,7 +15,7 @@ export class DiscordClient {
   constructor() {
     const WEBHOOK_URL = z
       .string()
-      .nonempty()
+      .nonempty("DISCORD_WEBHOOK URL must not be empty")
       .parse(process.env.DISCORD_WEBHOOK);
 
     this.webhookClient = new WebhookClient({

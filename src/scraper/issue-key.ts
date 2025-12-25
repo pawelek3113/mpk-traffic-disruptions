@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { TrafficIssue } from "./mpk-scraper";
+import { TrafficIssue } from "./mpk-scraper.js";
 
 const normalizeText = (s?: string) => {
   return (s || "").trim().replace(/\s+/g, " ").toLowerCase();

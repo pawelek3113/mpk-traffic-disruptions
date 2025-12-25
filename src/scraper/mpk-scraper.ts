@@ -1,7 +1,7 @@
 import { Cheerio, CheerioAPI } from "cheerio";
 import type { AnyNode } from "domhandler";
-import { Scraper } from ".";
-import { generateTrafficIssueKey } from "./issue-key";
+import { Scraper } from "./index.js";
+import { generateTrafficIssueKey } from "./issue-key.js";
 
 export interface TrafficIssue {
   lineNumbers: string[];
@@ -55,8 +55,16 @@ export class MpkScraper extends Scraper {
 
       // catch main info
       const tds = row.find("td");
-      const trafficIssue = tds.eq(1).text().trim().replace(/\s+/g, " ");
-      const situationChange = tds.eq(2).text().trim().replace(/\s+/g, " ");
+
+      const trafficIssueParagraphs = tds.eq(1).find("p").map((_, el) => 
+        $(el).text().trim()
+      ).get();
+      const trafficIssue = trafficIssueParagraphs.join(" ").replace(/\s+/g, " ");
+
+      const situationChangeParagraphs = tds.eq(2).find("p").map((_, el) => 
+        $(el).text().trim()
+      ).get();
+      const situationChange = situationChangeParagraphs.join(" ").replace(/\s+/g, " ");
 
       // catch lat and lng
       const onclick = tds.eq(3).find("a").eq(0).attr("onclick") ?? "";

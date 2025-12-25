@@ -1,5 +1,5 @@
-import { TrafficIssueWithId } from "../scraper/mpk-scraper";
-import db from "./db";
+import { TrafficIssueWithId } from "../scraper/mpk-scraper.js";
+import db from "./db.js";
 
 const insert = db.prepare(`
   INSERT OR IGNORE INTO issues (id, first_seen, last_seen, payload)

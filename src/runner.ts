@@ -1,5 +1,5 @@
-import { MpkScraper } from "./scraper/mpk-scraper";
-import { dedupeIssues } from "./store/dedupe";
+import { MpkScraper } from "./scraper/mpk-scraper.js";
+import { dedupeIssues } from "./store/dedupe.js";
 
 export const runScrape = async () => {
   try {
