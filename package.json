@@ -16,7 +16,7 @@
     "dev-server": "tsx watch src/index.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "site": "npm run test:coverage && open coverage/index.html",
+    "site": "npm run test:coverage ; open coverage/index.html",
     
     "prod": "npm run build && npm start",
     "prod-server": "npm run build && npm run start-server"
