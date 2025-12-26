@@ -49,3 +49,33 @@ or run a server in development mode:
 ```bash
 npm run dev-server
 ```
+
+## Production
+
+To build and run for production, use:
+
+```bash
+npm run prod
+```
+
+or for server:
+
+```bash
+npm run prod-server
+```
+
+## Testing
+
+To run tests, use:
+
+```bash
+npm test
+```
+
+## Coverage
+
+To generate a coverage report, use:
+
+```bash
+npm run test:coverage
+```
