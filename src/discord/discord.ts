@@ -32,6 +32,7 @@ export class DiscordClient {
     await this.webhookClient.send({ content, embeds, username, avatarURL });
   }
 
+  // TODO: refactor, use typed options object here to provide optional attributes
   public createEmbed(
     title: string | null,
     description: string | null,
