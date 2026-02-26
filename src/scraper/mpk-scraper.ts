@@ -20,7 +20,7 @@ export class MpkScraper extends Scraper {
     super("https://www.mpk.lodz.pl/rozklady/utrudnienia.jsp", "iso-8859-2");
   }
 
-  public async getTraficIssues() {
+  public async getTrafficIssues() {
     const $ = await this.readData();
     const rawData = $("#tJamsCntr");
     if (!rawData) {

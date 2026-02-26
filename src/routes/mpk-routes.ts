@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/all", async (req, res) => {
   try {
     const s = new MpkScraper();
-    const data = await s.getTraficIssues();
+    const data = await s.getTrafficIssues();
 
     res.set({
       "Content-Type": "application/json; charset=utf-8",

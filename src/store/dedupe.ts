@@ -25,12 +25,15 @@ export const dedupeIssues = (issues: TrafficIssueWithId[]) => {
     return newIssues;
   });
 
-  const newIssues = tx(issues);
-
-  return {
-    total: issues.length,
-    newCount: newIssues.length,
-    skipped: issues.length - newIssues.length,
-    newIssues,
-  };
+  try {
+    const newIssues = tx(issues);
+    return {
+      total: issues.length,
+      newCount: newIssues.length,
+      skipped: issues.length - newIssues.length,
+      newIssues,
+    };
+  } catch (error) {
+    console.error("Dedupe transaction failed and was rolled back");
+  }
 };
