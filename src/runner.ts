@@ -4,16 +4,15 @@ import { dedupeIssues } from "./store/dedupe.js";
 export const runScrape = async () => {
   try {
     const scraper = new MpkScraper();
-    const scraped = await scraper.getTraficIssues();
+    const scraped = await scraper.getTrafficIssues();
 
     if (!scraped) {
       return [];
     }
 
     const stats = dedupeIssues(scraped);
-    return stats.newIssues;
+    return stats?.newIssues;
   } catch (e) {
-    console.error("Caught error", e);
+    console.error("Caught error while running scraper and deduping issues", e);
   }
-  return null;
 };

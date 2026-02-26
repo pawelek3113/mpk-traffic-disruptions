@@ -1,17 +1,17 @@
 import crypto from "crypto";
 import { TrafficIssue } from "./mpk-scraper.js";
 
-const normalizeText = (s?: string) => {
+export const normalizeText = (s?: string) => {
   return (s || "").trim().replace(/\s+/g, " ").toLowerCase();
 };
 
-const normalizeObject = <T extends Record<string, any>>(obj: T): T => {
+export const normalizeObject = <T extends Record<string, any>>(obj: T): T => {
   return Object.fromEntries(
     Object.entries(obj).map(([k, v]) => [k, normalizeText(v)])
   ) as T;
 };
 
-const normalizeIssue = (issue: TrafficIssue) => {
+export const normalizeIssue = (issue: TrafficIssue) => {
   return normalizeObject({
     addedDate: issue.addedDate,
     trafficIssue: issue.trafficIssue,
