@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    image: mpk-scraper
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
