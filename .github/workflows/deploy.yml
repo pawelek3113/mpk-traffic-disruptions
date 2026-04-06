@@ -9,19 +9,19 @@ jobs:
   deploy:
     runs-on: "self-hosted"
 
-  steps:
-    - name: Checkout
-      uses: "actions/checkout@v4"
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v4"
 
-    - name: test
-      run: |
-        echo "Working" > result.txt
-        echo "DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" > .env 
+      - name: test
+        run: |
+          echo "Working" > result.txt
+          echo "DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" > .env 
     
-    # - name: Create .env file
-    #   run: |
-    #     echo "DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" > .env 
-    #     echo "DATABASE_FILE=${{ vars.DATABASE_FILE }}" >> .env
-
-    # - name: Build image
-    #   run: docker compose build
+      # - name: Create .env file
+      #   run: |
+      #     echo "DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" > .env 
+      #     echo "DATABASE_FILE=${{ vars.DATABASE_FILE }}" >> .env
+  
+      # - name: Build image
+      #   run: docker compose build
