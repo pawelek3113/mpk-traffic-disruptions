@@ -5,4 +5,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/app/data
+      - db_data:${CONTAINER_DB_FOLDER}
+volumes:
+  db_data:
+    name: mpk_scraper-prod-db-data
