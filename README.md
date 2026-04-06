@@ -84,7 +84,7 @@ mkdir logs
 
 ```bash
 crontab -e
-*/5 * * * * cd /full/directory/to/the/project/scraper && /usr/bin/docker compose run --rm app npm run start >> /full/directory/to/logs/cron.log 2>&1
+*/5 * * * * cd /full/directory/to/the/project/scraper && /usr/bin/docker compose run --rm app 2>&1 | /usr/bin/ts '[%Y-%m-%d %H:%M:%S]' >> /full/directory/to/logs/cron.log
 ```
 
 ## Testing
