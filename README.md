@@ -18,7 +18,7 @@ npm install
 Create a `.env` file containing necessary environment variables:
 
 ```bash
-touch .env && echo DISCORD_BOT_TOKEN=your_discord_bot_token >> .env && echo DISCORD_CHANNEL_ID=your_discord_channel_id >> .env
+cp .env.example .env
 ```
 
 ## Building and running
@@ -62,6 +62,29 @@ or for server:
 
 ```bash
 npm run prod-server
+```
+
+## Running in a container using docker-compose
+
+```bash
+docker compose build
+docker compose run --rm app npm run start
+```
+
+## Scheduling
+
+### Create directory to logs
+
+```bash
+cd project
+mkdir logs
+```
+
+### Schedule using cron
+
+```bash
+crontab -e
+*/5 * * * * cd /full/directory/to/the/project/scraper && /usr/bin/docker compose run --rm app npm run start >> /full/directory/to/logs/cron.log 2>&1
 ```
 
 ## Testing
