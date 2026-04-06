@@ -16,6 +16,7 @@ jobs:
         run: |
           echo "DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" > .env 
           echo "DATABASE_FILE=${{ vars.DATABASE_FILE }}" >> .env
+          echo "CONTAINER_DB_FOLDER=${{ vars.CONTAINER_DB_FOLDER}}"
 
       - name: Build app service
         run: docker compose build
