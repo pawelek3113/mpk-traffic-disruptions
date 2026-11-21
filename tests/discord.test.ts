@@ -9,16 +9,16 @@ import { APIEmbedField, Colors, EmbedBuilder } from "discord.js";
 import { DiscordClient } from "../src/discord/discord";
 
 describe("DiscordClient", () => {
-  const originalWebhook = process.env.DISCORD_WEBHOOK;
+  const originalWebhook = process.env.DISCORD_WEBHOOKS;
 
   afterEach(() => {
-    process.env.DISCORD_WEBHOOK = originalWebhook;
+    process.env.DISCORD_WEBHOOKS = originalWebhook;
     jest.clearAllMocks();
   });
 
   describe("Creation", () => {
     it("should throw an error when url's not provided", () => {
-      delete process.env.DISCORD_WEBHOOK;
+      delete process.env.DISCORD_WEBHOOKS;
 
       expect(() => {
         new DiscordClient();
@@ -26,11 +26,11 @@ describe("DiscordClient", () => {
     });
 
     it("should throw an error when url's empty", () => {
-      process.env.DISCORD_WEBHOOK = "";
+      process.env.DISCORD_WEBHOOKS = "";
 
       expect(() => {
         new DiscordClient();
-      }).toThrow("DISCORD_WEBHOOK URL must not be empty");
+      }).toThrow("DISCORD_WEBHOOKS URLs must not be empty");
     });
   });
 
@@ -38,7 +38,7 @@ describe("DiscordClient", () => {
     let dcc: DiscordClient;
 
     beforeEach(() => {
-      process.env.DISCORD_WEBHOOK = "https://discord.com/api/webhooks/123/abc";
+      process.env.DISCORD_WEBHOOKS = "https://discord.com/api/webhooks/123/abc,https://discord.com/api/webhooks/123/def";
       dcc = new DiscordClient();
     });
 
@@ -66,7 +66,7 @@ describe("DiscordClient", () => {
           null,
           { text: footerText },
           null,
-          []
+          [],
         );
 
         expect(embed).toBeInstanceOf(EmbedBuilder);

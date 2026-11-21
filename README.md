@@ -64,7 +64,7 @@ crontab -e
 
 1. Go to **Settings > Actions > Runners > New** and follow the setup steps.
 2. Add the following secrets/variables under **Settings > Secrets/Variables > Actions**:
-   - Secret: `DISCORD_WEBHOOK`
+   - Secret: `DISCORD_WEBHOOKS`
    - Variables: `DATABASE_FILE`, `CONTAINER_DB_FOLDER`
 3. Update cron paths to point to the project inside `actions_runner/_work/`.
 
