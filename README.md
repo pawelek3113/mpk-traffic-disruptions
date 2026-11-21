@@ -25,11 +25,11 @@ npm install
 cp .env.example .env
 ```
 
-| Variable              | Description                             |
-| --------------------- | --------------------------------------- |
-| `DISCORD_WEBHOOK`     | Discord webhook URL for notifications   |
-| `DATABASE_FILE`       | Path to SQLite database file            |
-| `CONTAINER_DB_FOLDER` | Mount point for DB volume (Docker only) |
+| Variable              | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `DISCORD_WEBHOOKS`    | Discord webhook URLs for notifications (comma-separated) |
+| `DATABASE_FILE`       | Path to SQLite database file                             |
+| `CONTAINER_DB_FOLDER` | Mount point for DB volume (Docker only)                  |
 
 ## Usage
 
@@ -64,7 +64,7 @@ crontab -e
 
 1. Go to **Settings > Actions > Runners > New** and follow the setup steps.
 2. Add the following secrets/variables under **Settings > Secrets/Variables > Actions**:
-   - Secret: `DISCORD_WEBHOOK`
+   - Secret: `DISCORD_WEBHOOKS`
    - Variables: `DATABASE_FILE`, `CONTAINER_DB_FOLDER`
 3. Update cron paths to point to the project inside `actions_runner/_work/`.
 

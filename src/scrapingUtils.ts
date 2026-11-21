@@ -13,7 +13,7 @@ export class ScrapingUtils {
       const newIssues = await runScrape();
       if (Array.isArray(newIssues) && newIssues.length > 0) {
         newIssueIds.push(...newIssues?.map((el) => el.id));
-        ScrapingUtils.postToDiscord(newIssues, discordClient);
+        await ScrapingUtils.postToDiscord(newIssues, discordClient);
       }
       return newIssues;
     } catch (e) {
