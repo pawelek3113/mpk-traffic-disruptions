@@ -30,7 +30,7 @@ describe("DiscordClient", () => {
 
       expect(() => {
         new DiscordClient();
-      }).toThrow("DISCORD_WEBHOOKS URLs must not be empty");
+      }).toThrow("DISCORD_WEBHOOKS must not be empty");
     });
   });
 
