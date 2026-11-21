@@ -10,17 +10,22 @@ import {
 import z from "zod";
 
 export class DiscordClient {
-  private webhookClient: WebhookClient;
+  private webhookClients: WebhookClient[];
 
   constructor() {
-    const WEBHOOK_URL = z
-      .string()
-      .nonempty("DISCORD_WEBHOOK URL must not be empty")
-      .parse(process.env.DISCORD_WEBHOOK);
-
-    this.webhookClient = new WebhookClient({
-      url: WEBHOOK_URL,
-    });
+    const urls = z
+          .string()
+          .nonempty("DISCORD_WEBHOOKS must not be empty")
+          .transform((val) =>
+            val
+              .split(",")
+              .map((u) => u.trim())
+              .filter(Boolean),
+          )
+          .pipe(z.array(z.url()).min(1))
+          .parse(process.env.DISCORD_WEBHOOKS);
+    
+        this.webhookClients = urls.map((url) => new WebhookClient({ url }));
   }
 
   public async send(
@@ -29,7 +34,20 @@ export class DiscordClient {
     username?: string,
     avatarURL?: string
   ) {
-    await this.webhookClient.send({ content, embeds, username, avatarURL });
+    const results = await Promise.allSettled(
+          this.webhookClients.map((client) =>
+            client.send({ content, embeds, username, avatarURL }),
+          ),
+        );
+
+        const failures = results.filter((r) => r.status === "rejected");
+        for (const failure of failures) {
+          console.error("Failed to send Discord webhook:", failure.reason);
+        }
+
+        if (failures.length === results.length) {
+          throw new Error("All Discord webhooks failed to send");
+        }
   }
 
   // TODO: refactor, use typed options object here to provide optional attributes

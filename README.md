@@ -25,11 +25,11 @@ npm install
 cp .env.example .env
 ```
 
-| Variable              | Description                             |
-| --------------------- | --------------------------------------- |
-| `DISCORD_WEBHOOK`     | Discord webhook URL for notifications   |
-| `DATABASE_FILE`       | Path to SQLite database file            |
-| `CONTAINER_DB_FOLDER` | Mount point for DB volume (Docker only) |
+| Variable              | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `DISCORD_WEBHOOKS`    | Discord webhook URLs for notifications (comma-separated) |
+| `DATABASE_FILE`       | Path to SQLite database file                             |
+| `CONTAINER_DB_FOLDER` | Mount point for DB volume (Docker only)                  |
 
 ## Usage
 
