@@ -63,6 +63,6 @@ export class ScrapingUtils {
       );
       embeds.push(embed);
     }
-    discordClient.send("UTRUDNIENIA na liniach:" + linesLabel, embeds);
+    await discordClient.send("UTRUDNIENIA na liniach:" + linesLabel, embeds);
   }
 }
